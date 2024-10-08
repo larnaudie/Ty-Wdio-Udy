@@ -6,6 +6,7 @@ dotenv.config();
 let headless = process.env.HEADLESS;
 let debug = process.env.DEBUG;
 import type { Options } from "@wdio/types";
+import * as glob from 'glob';
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -136,7 +137,7 @@ export const config: WebdriverIO.Config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ["./test/features/step-definitions/*.ts"],
+        require: glob.sync('./test/features/step-definitions/*.ts'),
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
