@@ -1,0 +1,50 @@
+{
+    "sessionId": "3f3d55b36c55bbca37155e2af71d264d",
+    "elementId": "f.79800E48B291AC3A8C57D35C7B7F981E.d.7CDFC34630F02C1AAAB1444606899241.e.1",
+    "element-6066-11e4-a52e-4f735466cecf": "f.79800E48B291AC3A8C57D35C7B7F981E.d.7CDFC34630F02C1AAAB1444606899241.e.1",
+    "locator": {
+        "type": "css",
+        "value": "#APjFqb"
+    },
+    "selector": "#APjFqb",
+    "parent": {
+        "sessionId": "3f3d55b36c55bbca37155e2af71d264d",
+        "capabilities": {
+            "acceptInsecureCerts": false,
+            "browserName": "chrome",
+            "browserVersion": "129.0.6668.90",
+            "chrome": {
+                "chromedriverVersion": "129.0.6668.90 (abb728f8afc6a86cc66b1313f5056728ce422ddd-refs/branch-heads/6668@{#1504})",
+                "userDataDir": "sion": "129.0.6668.90",
+                "chrome": {
+                    "chromedriverVersion": "129.0.6668.90 (abb728f8afc6a86cc66b1313f5056728ce422ddd-refs/branch-heads/6668@{#1504})",
+                    "userDataDir": "C:\\Users\\PABLO~1.LAR\\AppData\\Local\\Temp\\scoped_dir17776_1814500296"
+                },
+                "fedcm:accounts": true,
+                "goog:chromeOptions": {
+                    "debuggerAddress": "localhost:50843"
+                },
+                "networkConnectionEnabled": false,
+                "pageLoadStrategy": "normal",
+                "platformName": "windows",
+                "proxy": {},
+                "setWindowRect": true,
+                "strictFileInteractability": false,
+                "timeouts": {
+                    "implicit": 0,
+                    "pageLoad": 300000,
+                    "script": 30000
+                },
+                "unhandledPromptBehavior": "dismiss and notify",
+                "webSocketUrl": "ws://localhost:50795/session/3f3d55b36c55bbca37155e2af71d264d",
+                "webauthn:extension:credBlob": true,
+                "webauthn:extension:largeBlob": true,
+                "webauthn:extension:minPinLength": true,
+                "webauthn:extension:prf": true,
+                "webauthn:virtualAuthenticators": true,
+                "wdio:driverPID": 17776
+            }
+        },
+        "isReactElement": false,
+        "isShadowElement": false
+    }

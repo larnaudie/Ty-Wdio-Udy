@@ -5,8 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./wdio.conf.ts"
+    "demo": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@demo'",
+    "smoke": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@smoke'",
+    "regression": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@regression'",
+    "wdio": "wdio run ./wdio.conf.ts",
+    "wdio:repl": "wdio repl"
   },
   "keywords": [
     "wdio",

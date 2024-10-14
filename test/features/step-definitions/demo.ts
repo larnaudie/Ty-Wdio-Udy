@@ -5,10 +5,12 @@ import { expect } from 'chai';
 //Expresion regular
 Given(/^Google page is opened$/, async function () {
     await browser.url("https://www.google.com")
-    // await browser.pause(7000)
+    await browser.pause(1000)
+    //agregado en el capitulo 39
+    // console.log(`>>>>>>>> BrowserObj: ${JSON.stringify(browser)}`)
 })
 
-//Es lo mismo que lo de arriba, cambia la expresion a una expresion regular.
+// Es lo mismo que lo de arriba, cambia la expresion a una expresion regular.
 // Given("Google page is opened",async function(){
 //     await browser.url("https://www.google.com")
 //     await browser.pause(7000)
@@ -19,6 +21,9 @@ When(/^Search with (.*)$/, async function (searchItem) {
     let ele = await $(`#APjFqb`);
     await ele.setValue(searchItem);
     await browser.keys("Enter");
+
+    // //agregado en el capitulo 39
+    // console.log(`>>>>>>>> element obj: ${JSON.stringify(ele)}`)
 })
 
 Then(/^Click on the first search result$/, async function () {
@@ -27,6 +32,14 @@ Then(/^Click on the first search result$/, async function () {
 })
 
 Then(/^URL should match (.*)$/, async function (expectedUrl) {
+    console.log(`------------------------>>>  Url esperada: ${expectedUrl}`)
+
+    //capitulo 40 waitUntil
+    //probando con un objeto browser, peude ser con un elemento en vez de browser.
+    await browser.waitUntil(async function(){
+        return await browser.getTitle() === `WebdriverIO · Marco de prueba de automatización móvil y navegador de próxima generación para Node.js | WebdriverIO`
+    }, {timeout: 20000, interval: 500, timeoutMsg:"Pah, mostro, no pude hacerlo funcionarl."} )
+
     let url = await browser.getUrl();
     expect(url).to.equal(expectedUrl);
 })
@@ -313,7 +326,7 @@ When("Perform web Interactions", async function () {
         */
 
     //Web Table 2
-    /** */
+    /** 
     await browser.url("/tables")
     let largoDeFilas = await $$(`#table1 tbody tr`).length;
     let largoDeColumnas = await $$(`#table1 thead th`).length;
@@ -351,6 +364,42 @@ When("Perform web Interactions", async function () {
     console.log(`>>>>>>>>> ${JSON.stringify(listaDePersonas2)}`)
 
     await browser.debug();
+    */
+
+    //cambiamos baseUrl a la de amazon
+    //Advance Scrolling
+    /**
+        await browser.url("");
+    //Vamos a hacer un scroll hacia abajo usando execute
+    //hace scroll hacia abajo
+    await browser.execute(() => {
+        window.scrollBy(0, window.innerHeight)
+    })
+
+    //hace scroll hacia arriba
+    await browser.execute(() => {
+        window.scrollBy(0, -window.innerHeight)
+    })
+
+    //hago scroll a una parte especifica de la ventana en pixeles
+    await browser.execute(() => {
+        window.scrollTo(0, 1500)
+    })
+
+    //hago scroll hacia abajo aplicando un metodo 
+    await browser.execute(() => {
+        window.scrollTo(0, document.body.scrollHeight)
+    })
+
+    //hago scroll hacia arriba aplicando un metodo 
+    await browser.execute(() => {
+        window.scrollTo(0, document.body.scrollTop)
+    })
+
+    await browser.debug(); 
+    */
+
+
 
 })
 

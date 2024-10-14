@@ -8,8 +8,7 @@ Then(/^Inventory page should list (.*)$/, async function (nroDeProductos) {
     if (!nroDeProductos) throw Error(`Invalid number provided: ${nroDeProductos}`);
 
     let listaElementos = await $$(".inventory_item_name");  // Espera a que se resuelva la promesa
-    console.log(`------------------>>>>>>  LISTAAA ${listaElementos.length}`);
-
+    // console.log(`------------------>>>>>>  LISTAAA ${listaElementos.length}`);
     expect(listaElementos.length).to.equal(Number(nroDeProductos));  // Asegúrate de que sea un número
 })
 

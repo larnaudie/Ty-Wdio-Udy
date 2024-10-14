@@ -59,7 +59,16 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        "goog:chromeOptions": {
+            args:[
+               " --disable-web-security",
+
+
+            ]
+        },
+        acceptInsecureCerts: true,
+        timeouts: {implicit: 10000, pageLoad: 20000, script: 30000}
     }],
 
     //
@@ -94,8 +103,8 @@ export const config: WebdriverIO.Config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
 
-    // baseUrl: 'http://localhost',
-    baseUrl: 'https://the-internet.herokuapp.com',
+    baseUrl: 'http://localhost',
+    // baseUrl: 'https://the-internet.herokuapp.com',
     // baseUrl: 'https://amazon.com.au/',
     // baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
     // baseURL:"https://practice-automation.com/iframes/",
@@ -162,7 +171,7 @@ export const config: WebdriverIO.Config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: '',
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 300000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
