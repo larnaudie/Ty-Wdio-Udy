@@ -1,5 +1,6 @@
 import { Then } from "@wdio/cucumber-framework";
 import { expect } from 'chai';
+import logger from "../../helper/logger.ts";
 //todos los selectores que van a ir aca, deber ir dentro de la clase en
 // page_objects y accederemos a ellos mediante el nombre de la clase, instanciandola aqui
 
@@ -20,6 +21,10 @@ Then(/^Inventory page should list (.*)$/, async function (nroDeProductos) {
 
 //baseUrl: 'http://localhost'-> en WDIO se trabaja sobre esa url
 Then(/^Validate all products have valid price$/, async function () {
+
+    logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: CHECKING PRICEEE`);
+
+
     let listaDePrecios = await $$(`.inventory_item_price`);
     let listaDePreciosEditado = [];
     if (Array.isArray(listaDePrecios)) {

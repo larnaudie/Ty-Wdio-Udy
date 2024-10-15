@@ -1,7 +1,10 @@
 import { Given } from "@wdio/cucumber-framework";
 import { expect } from 'chai';
+import logger from "../../helper/logger.ts";
 
 Given ("As a standar user I login to inventory web app", async function (dataTable) {
+
+    logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: Started to login sause demo app`);
 
     console.log(`>>>>> MIII TESTID: ${this.testId}`);
 
