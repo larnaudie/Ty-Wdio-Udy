@@ -5,6 +5,12 @@ import { expect } from 'chai';
 
 //baseUrl: 'http://localhost'-> en WDIO se trabaja sobre esa url
 Then(/^Inventory page should list (.*)$/, async function (nroDeProductos) {
+    // throw Error("Falle por que quiero y puedo")//insentiva a wdio.conf.ts a sacar screenshot
+    
+    console.log(`>>>>> MIII TESTID: ${this.testId}`);
+    
+    // console.log(`>>>>>>>>> this.appID: ${this.appID}`)
+    
     if (!nroDeProductos) throw Error(`Invalid number provided: ${nroDeProductos}`);
 
     let listaElementos = await $$(".inventory_item_name");  // Espera a que se resuelva la promesa
@@ -36,7 +42,7 @@ Then(/^Validate all products have valid price$/, async function () {
             listaDePreciosEditado.push(textoPrecioEntero);
         }
     }
-    console.log(`<<<<<<<<<<<< Lista con $: ${listaDePreciosEditado}`)
+    // console.log(`<<<<<<<<<<<< Lista con $: ${listaDePreciosEditado}`)
 
     //MAP -> recorre cada elemento de la lista
 
@@ -47,10 +53,10 @@ Then(/^Validate all products have valid price$/, async function () {
         //Nos devuelve el numero con decimales
         +(ele.replace("$", ""))
     )
-    console.log(`<<<<<<<<<<<< Lista sin $: ${listaDePreciosNumerico}`)
+    // console.log(`<<<<<<<<<<<< Lista sin $: ${listaDePreciosNumerico}`)
 
     //FILTER -> Sirve para filtrar elementos en un array
     let listaNumerosInvalidos = listaDePreciosNumerico.filter(elementoActual => elementoActual <= 0);
-    console.log(`<<<<<<<<<<<< Lista de numeros invalidos: ${listaNumerosInvalidos}`);
+    // console.log(`<<<<<<<<<<<< Lista de numeros invalidos: ${listaNumerosInvalidos}`);
     expect(listaNumerosInvalidos.length).to.equal(0);
 })

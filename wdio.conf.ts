@@ -249,8 +249,12 @@ export const config: WebdriverIO.Config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: function (world, context) {
+        console.log(`>>>>>>>>> SOOOY WOOORLD: ${JSON.stringify(world)}`)
+        let arrNombresScenarios = world.pickle.name.split(/:/);
+        if(arrNombresScenarios.length > 0) browser.options.testId = arrNombresScenarios[0];
+        if(!browser.options.testId) throw Error(`No hay Test id para el escernario actual ${world.pickle.name}`)
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -271,8 +275,15 @@ export const config: WebdriverIO.Config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+        console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`)
+        console.log(`>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`)
+        console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`)
+        console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`)
+        if(!result.passed){
+            await browser.takeScreenshot();
+        }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.

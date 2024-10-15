@@ -17,7 +17,7 @@ Given(/^Google page is opened$/, async function () {
 // })
 
 When(/^Search with (.*)$/, async function (searchItem) {
-    console.log(`${searchItem}`);
+    // console.log(`${searchItem}`);
     let ele = await $(`#APjFqb`);
     await ele.setValue(searchItem);
     await browser.keys("Enter");
@@ -32,7 +32,7 @@ Then(/^Click on the first search result$/, async function () {
 })
 
 Then(/^URL should match (.*)$/, async function (expectedUrl) {
-    console.log(`------------------------>>>  Url esperada: ${expectedUrl}`)
+    // console.log(`------------------------>>>  Url esperada: ${expectedUrl}`)
 
     //capitulo 40 waitUntil
     //probando con un objeto browser, peude ser con un elemento en vez de browser.
