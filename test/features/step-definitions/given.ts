@@ -2,15 +2,19 @@ import { Given } from "@wdio/cucumber-framework";
 import { expect } from 'chai';
 
 Given("Login to inventory web app", async function () {
-    await browser.url("https://www.saucedemo.com/");
+    console.log(`Test usuario: ${process.env.TEST_STD_USERNAME}`)
+
+    // @ts-ignore
+    await browser.url(browser.options.sauceDemoURL);
+    console.log(`>>>>>>>>>>>>> Test config values: ${JSON.stringify(browser.options)}`)
 
     //capitulo 41, sabemos que esto va en el config file, wdio.conf.ts, NO ACA
     // await browser.setTimeout({implicit: 15000, pageLoad: 10000});
 
     //agarramos el selector de username y escribimos algo
-    await $(`input[placeholder="Username"]`).setValue("standard_user");
+    await $(`input[placeholder="Username"]`).setValue(`${process.env.TEST_STD_USERNAME}`);
     //agarramos el selector de password y escirbimos una pass
-    await $(`input[placeholder="Password"]`).setValue("secret_sauce");
+    await $(`input[placeholder="Password"]`).setValue(`${process.env.TEST_STD_PASSWORD}`);
     //click en el boton
     await $("#login-button").click();
     

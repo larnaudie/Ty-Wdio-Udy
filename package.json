@@ -5,9 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "demo": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@demo'",
-    "smoke": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@smoke'",
-    "regression": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@regression'",
+
+    "test:debug": "set DEBUG=Y && set HEADLESS=N && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@debug'",
+
+    "test:demo": "set DEBUG=N && set HEADLESS=N && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo'",
+    "test: smoke": "set DEBUG=N && set HEADLESS=Y && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@smoke'",
+
+    "uat:demo": "set DEBUG=N && set HEADLESS=N && npx wdio config/wdio.uat-conf.ts --cucumberOpts.tagExpression='@demo'",
+    "uat:smoke": "set DEBUG=N && set HEADLESS=Y && npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@smoke'",
+
     "wdio": "wdio run ./wdio.conf.ts",
     "wdio:repl": "wdio repl"
   },
@@ -29,5 +35,8 @@
     "chai": "^5.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

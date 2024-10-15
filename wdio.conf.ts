@@ -1,8 +1,8 @@
 // @ts-nocheck
 import dotenv from "dotenv";
+dotenv.config();
 import allure from "@wdio/allure-reporter";
 import fs from "fs";
-dotenv.config();
 let headless = process.env.HEADLESS;
 let debug = process.env.DEBUG;
 import type { Options } from "@wdio/types";
@@ -61,11 +61,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'chrome',
         "goog:chromeOptions": {
-            args:[
-               " --disable-web-security",
-
-
-            ]
+            args: headless.toUpperCase() === "Y" ? [" --disable-web-security", "--headless","--disable-dev-shm-usage","--no-sandbox","--window-size=1920,1080"] : []
         },
         acceptInsecureCerts: true,
         timeouts: {implicit: 10000, pageLoad: 20000, script: 30000}
@@ -78,7 +74,7 @@ export const config: WebdriverIO.Config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'error',
+    logLevel: debug.toUpperCase() === "Y" ? 'info' : 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -103,8 +99,8 @@ export const config: WebdriverIO.Config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
 
-    baseUrl: 'http://localhost',
-    // baseUrl: 'https://the-internet.herokuapp.com',
+    // baseUrl: 'http://localhost',
+    baseUrl: 'https://the-internet.herokuapp.com',
     // baseUrl: 'https://amazon.com.au/',
     // baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
     // baseURL:"https://practice-automation.com/iframes/",

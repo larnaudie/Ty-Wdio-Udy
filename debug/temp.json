@@ -1,37 +1,150 @@
-[
-    {
-        "apellido": "Doe",
-        "nombre": "Jason",
-        "precio": "jdoe@hotmail.com",
-        "mail": "$100.00",
-        "web": "http://www.jdoe.com"
+{
+    "protocol": "http",
+    "hostname": "localhost",
+    "path": "/",
+    "capabilities": {
+        "browserName": "chrome",
+        "goog:chromeOptions": {
+            "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "args": []
+        },
+        "acceptInsecureCerts": true,
+        "timeouts": {
+            "implicit": 10000,
+            "pageLoad": 20000,
+            "script": 30000
+        },
+        "webSocketUrl": true
     },
-    {
-        "apellido": "Doe",
-        "nombre": "Jason",
-        "precio": "jdoe@hotmail.com",
-        "mail": "$100.00",
-        "web": "http://www.jdoe.com"
+    "logLevel": "error",
+    "connectionRetryTimeout": 120000,
+    "connectionRetryCount": 3,
+    "logLevels": {
+        "webdriver": "error",
+        "@wdio/appium-service": "error"
     },
-    {
-        "apellido": "Doe",
-        "nombre": "Jason",
-        "precio": "jdoe@hotmail.com",
-        "mail": "$100.00",
-        "web": "http://www.jdoe.com"
+    "enableDirectConnect": true,
+    "strictSSL": true,
+    "cacheDir": "C:\\Users\\PABLO~1.LAR\\AppData\\Local\\Temp",
+    "port": 51524,
+    "requestedCapabilities": {
+        "browserName": "chrome",
+        "goog:chromeOptions": {
+            "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "args": []
+        },
+        "acceptInsecureCerts": true,
+        "timeouts": {
+            "implicit": 10000,
+            "pageLoad": 20000,
+            "script": 30000
+        }
     },
-    {
-        "apellido": "Doe",
-        "nombre": "Jason",
-        "precio": "jdoe@hotmail.com",
-        "mail": "$100.00",
-        "web": "http://www.jdoe.com"
+    "automationProtocol": "webdriver",
+    "baseUrl": "https://the-internet.herokuapp.com",
+    "waitforInterval": 500,
+    "waitforTimeout": 10000,
+    "onReload": [],
+    "beforeCommand": [],
+    "afterCommand": [],
+    "rootDir": "C:\\Users\\pablo.larnaudie\\Desktop\\Mis archivos\\My-Repos\\My-Js-Wdio\\Ty-Wdio-Udy\\config",
+    "specs": [
+        "C:\\Users\\pablo.larnaudie\\Desktop\\Mis archivos\\My-Repos\\My-Js-Wdio\\Ty-Wdio-Udy/test/features/**/*.feature"
+    ],
+    "suites": {},
+    "exclude": [],
+    "groupLogsByTestSpec": false,
+    "excludeDriverLogs": [],
+    "bail": 0,
+    "framework": "cucumber",
+    "reporters": [
+        "spec",
+        [
+            "allure",
+            {
+                "outputDir": "allure-results"
+            }
+        ]
+    ],
+    "services": [],
+    "maxInstances": 10,
+    "maxInstancesPerCapability": 100,
+    "injectGlobals": true,
+    "filesToWatch": [],
+    "execArgv": [],
+    "runnerEnv": {},
+    "runner": "local",
+    "shard": {
+        "current": 1,
+        "total": 1
     },
-    {
-        "apellido": "Doe",
-        "nombre": "Jason",
-        "precio": "jdoe@hotmail.com",
-        "mail": "$100.00",
-        "web": "http://www.jdoe.com"
-    }
-]
+    "specFileRetries": 0,
+    "specFileRetriesDelay": 0,
+    "specFileRetriesDeferred": false,
+    "reporterSyncInterval": 100,
+    "reporterSyncTimeout": 5000,
+    "cucumberFeaturesWithLineNumbers": [],
+    "mochaOpts": {
+        "timeout": 10000
+    },
+    "jasmineOpts": {
+        "defaultTimeoutInterval": 10000
+    },
+    "cucumberOpts": {
+        "timeout": 300000,
+        "tagExpression": "@demo",
+        "require": [
+            "test\\features\\step-definitions\\when.ts",
+            "test\\features\\step-definitions\\then.ts",
+            "test\\features\\step-definitions\\given.ts",
+            "test\\features\\step-definitions\\demo.ts"
+        ],
+        "backtrace": false,
+        "requireModule": [],
+        "dryRun": false,
+        "failFast": false,
+        "name": [],
+        "snippets": true,
+        "source": true,
+        "strict": false,
+        "ignoreUndefinedDefinitions": false
+    },
+    "onPrepare": [],
+    "onWorkerStart": [],
+    "onWorkerEnd": [],
+    "before": [],
+    "beforeSession": [],
+    "beforeSuite": [],
+    "beforeHook": [],
+    "beforeTest": [
+        null
+    ],
+    "afterTest": [],
+    "afterHook": [],
+    "afterSuite": [],
+    "afterSession": [],
+    "after": [
+        null
+    ],
+    "onComplete": [],
+    "beforeAssertion": [],
+    "afterAssertion": [],
+    "beforeFeature": [],
+    "beforeScenario": [],
+    "beforeStep": [],
+    "afterStep": [],
+    "afterScenario": [],
+    "afterFeature": [],
+    "_": [
+        "config/wdio.test.conf.ts",
+        "config/wdio.test.conf.ts"
+    ],
+    "cucumber-opts": {
+        "tagExpression": "@demo"
+    },
+    "$0": "node_modules\\@wdio\\cli\\bin\\wdio.js",
+    "ignoredWorkerServices": [],
+    "tsConfigPath": "./tsconfig.json",
+    "environment": "Test",
+    "sauceDemoURL": "https://saucedemo.com"
+}
