@@ -14,7 +14,7 @@ jobs:
   build:
     # Decidimos en que maquina virutal va a operar
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       contents: write
     env:
       RUNNER: ${{secrets.RUNNER}}
@@ -53,6 +53,11 @@ jobs:
         run:
           npm install --legacy-peer-deps
 
+      # Asegurarse de que WDIO tiene permisos de ejecución
+      - name: Set executable permissions for wdio
+        run: chmod +x ./node_modules/.bin/wdio
+
       # Correra las features con @smoke respetando los scripts del package.json
       - name: Corriendo test smoke
         run: npm run test:demo
+        
