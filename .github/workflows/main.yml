@@ -1,42 +1,32 @@
 name: WDIO-CI
-# Controla donde va a trabajar el workflow
 on:
-  # lanza el workflow cuando hay un push o pull pero en las branches que estan aca
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  # Te permite ejecutarlo manualmente desde Github Actions
   workflow_dispatch:
 jobs:
-  # El job contiene solo 1 job que se llama build 
   build:
-  # Decidimos en que maquina virutal va a operar
     runs-on: ubuntu-latest
-    # le indicamos los pasos
     steps:
-      # Nombramos el paso que va a hacer
       - name: Install Chromium
-        # le instalamos en terminal el chromium para chrome
         run: sudo apt-get install chromium-browser
-        # Vamos a hacer un checkout del repositorio bajo GITHUB_WORKSPACE
+      
       - uses: actions/checkout@v3
 
-      # Instalar geckodriver
+      # Instalar Geckodriver - especificamos una versión fija
       - name: Install Geckodriver
         run: |
-          GECKODRIVER_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+          GECKODRIVER_VERSION="v0.33.0"
           wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
           tar -xzf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
           sudo mv geckodriver /usr/local/bin/
           geckodriver --version
 
-      # Nombramos otro step instalando node
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
 
-        # Nombramos otro step para instalar dependencias
       - name: Install dependencies
         run: npm install --legacy-peer-deps
