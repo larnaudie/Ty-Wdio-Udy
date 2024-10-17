@@ -14,7 +14,8 @@ jobs:
   build:
     # Decidimos en que maquina virutal va a operar
     runs-on: ubuntu-latest
-
+    permissions: 
+      contents: write
     env:
       RUNNER: ${{secrets.RUNNER}}
       LOG_LEVEL: ${{secrets.LOG_LEVEL}}
