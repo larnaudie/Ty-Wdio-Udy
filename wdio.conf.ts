@@ -60,6 +60,7 @@ export const config: WebdriverIO.Config = {
   //
   capabilities: [
     {
+      maxInstances: 3,
       browserName: "chrome",
       "goog:chromeOptions": {
         args:
@@ -72,7 +73,13 @@ export const config: WebdriverIO.Config = {
                 "--window-size=1920,1080",
               ]
             : [],
+        acceptInsecureCerts: true,
+        timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
       },
+    },
+    {
+      maxInstances: 3,
+      browserName: "firefox",
       acceptInsecureCerts: true,
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
@@ -130,7 +137,7 @@ export const config: WebdriverIO.Config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-//   services: [],
+    // services: [`chromedriver`, `geckodriver`],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -153,20 +160,21 @@ export const config: WebdriverIO.Config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec", 
-        ["allure", 
-            { 
-                outputDir: "allure-results",
-                disableWebdriverStepsReporting:true,
-                useCucumberStepReporter: true,
-                reportedEnvironmentVars: {
-                    Environment: "Test",
-                    Middleware: "SIT-EAI"
-                }
-
-            }
-        ]
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        useCucumberStepReporter: true,
+        reportedEnvironmentVars: {
+          Environment: "Test",
+          Middleware: "SIT-EAI",
+        },
+      },
     ],
+  ],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
@@ -210,8 +218,8 @@ export const config: WebdriverIO.Config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
-    if(process.env.RUNNER === "LOCAL" && fs.existsSync("./allure-results")){
-        fs.rmdirSync("./allure-results", {recursive: true})
+    if (process.env.RUNNER === "LOCAL" && fs.existsSync("./allure-results")) {
+      fs.rmdirSync("./allure-results", { recursive: true });
     }
   },
   /**
@@ -337,7 +345,7 @@ export const config: WebdriverIO.Config = {
   afterFeature: function (uri, feature) {
     allure.addEnvironment("Environment", browser.options.environment);
     allure.addEnvironment("Middleware", "soy middlewaree");
-},
+  },
 
   /**
    * Runs after a WebdriverIO command gets executed
