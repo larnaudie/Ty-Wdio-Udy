@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import allure from "@wdio/allure-reporter";
 import fs from "fs";
-let headless = process.env.HEADLESS;
+const isHeadless = process.env.HEADLESS === 'Y';
 let debug = process.env.DEBUG;
 import type { Options } from "@wdio/types";
 import * as glob from "glob";
@@ -60,29 +60,32 @@ export const config: WebdriverIO.Config = {
   //
   capabilities: [
     {
-      maxInstances: 3,
       browserName: "chrome",
-      "goog:chromeOptions": {
-        args:
-          headless === "Y"
-            ? [
-                " --disable-web-security",
-                "--headless",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                "--window-size=1920,1080",
-              ]
-            : [],
-        acceptInsecureCerts: true,
-        timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
-      },
-    },
-    {
-      maxInstances: 3,
-      browserName: "firefox",
       acceptInsecureCerts: true,
+      "goog:chromeOptions": {
+        args: [
+                "--disable-web-security",
+                "--headless",
+                "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
+                "--no-sandbox", // Esto es necesario en algunos entornos CI
+                "--disable-gpu", // Deshabilitar la aceleración de GPU (aunque es menos crítico en entornos sin cabeza)
+                "--window-size=1920,1080",
+                "--remote-debugging-port=9222",  // Añade este puerto para evitar problemas con DevToolsActivePort
+                "--disable-setuid-sandbox",      // Esto ayuda a evitar errores de sandboxing
+                "--disable-software-rasterizer"  // Evita problemas gráficos en CI
+              ]
+      },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
+    // {
+    //   maxInstances: 1,
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: ["-headless"],
+    //   },
+    //   acceptInsecureCerts: true,
+    //   timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
+    // },
   ],
 
   //
@@ -92,7 +95,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: debug === "Y" ? "info" : "error",
+  logLevel: debug === "Y" || debug === "y" ? "info" : "error",
   //
   // Set specific log levels per logger
   // loggers:
@@ -137,7 +140,7 @@ export const config: WebdriverIO.Config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-    // services: [`chromedriver`, `geckodriver`],
+  // services: [`chromedriver`, `geckodriver`],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -169,7 +172,7 @@ export const config: WebdriverIO.Config = {
         disableWebdriverStepsReporting: true,
         useCucumberStepReporter: true,
         reportedEnvironmentVars: {
-          Environment: "Test",
+          Environment: "TEST",
           Middleware: "SIT-EAI",
         },
       },
@@ -218,7 +221,10 @@ export const config: WebdriverIO.Config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
-    if (process.env.RUNNER === "LOCAL" && fs.existsSync("./allure-results")) {
+    if (
+      (process.env.RUNNER === "LOCAL" || process.env.RUNNER === "local") &&
+      fs.existsSync("./allure-results")
+    ) {
       fs.rmdirSync("./allure-results", { recursive: true });
     }
   },
@@ -284,7 +290,7 @@ export const config: WebdriverIO.Config = {
    * @param {object}                 context  Cucumber World object
    */
   beforeScenario: function (world, context) {
-    console.log(`>>>>>>>>> SOOOY WOOORLD: ${JSON.stringify(world)}`);
+    // console.log(`>>>>>>>>> SOOOY WOOORLD: ${JSON.stringify(world)}`);
     let arrNombresScenarios = world.pickle.name.split(/:/);
     if (arrNombresScenarios.length > 0)
       browser.options.testId = arrNombresScenarios[0];
@@ -316,7 +322,7 @@ export const config: WebdriverIO.Config = {
   afterStep: async function (step, scenario, result, context) {
     // console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
     // console.log(
-      // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
+    // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
     // );
     // console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
     // console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
@@ -342,10 +348,11 @@ export const config: WebdriverIO.Config = {
    * @param {string}                   uri      path to feature file
    * @param {GherkinDocument.IFeature} feature  Cucumber feature object
    */
-  afterFeature: function (uri, feature) {
-    allure.addEnvironment("Environment", browser.options.environment);
-    allure.addEnvironment("Middleware", "soy middlewaree");
-  },
+  // afterFeature: function (uri, feature) {
+  //Quedo deprecado el addEnvironment, ahora se hace desde el reporters de wdio.conf.ts
+  // allure.addEnvironment("Environment", browser.options.environment);
+  //   allure.addEnvironment("Middleware", "soy middlewaree");
+  // },
 
   /**
    * Runs after a WebdriverIO command gets executed

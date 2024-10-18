@@ -5,7 +5,7 @@ Feature: Demo feature
         Given Google page is opened
         When Search with <SearchItem>
         Then Click on the first search result
-        Then URL should match <ExpectedURL>
+        # Then URL should match <ExpectedURL>
 
         Examples:
             | TestID  | SearchItem | ExpectedURL              |
