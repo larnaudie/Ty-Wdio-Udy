@@ -60,7 +60,7 @@ export const config: WebdriverIO.Config = {
   //
   capabilities: [
     {
-      maxInstances: 3,
+      maxInstances: 2,
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
