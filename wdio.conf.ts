@@ -64,6 +64,7 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
+        binary: '/usr/bin/google-chrome',
         args:
           headless === "Y"
             ? [
