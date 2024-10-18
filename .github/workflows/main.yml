@@ -26,11 +26,18 @@ jobs:
 
       # le indicamos los pasos
     steps:
-      - name: Install Chromium
-        # le instalamos en terminal el chromium para chrome
-        run: npm install chromedriver --save-dev
-      # Vamos a hacer un checkout del repositorio bajo GITHUB_WORKSPACE
-      - uses: actions/checkout@v3
+      # Checkout del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Instalar Chrome
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          google-chrome --version
 
       # Instalar Geckodriver - especificamos una versión fija
       - name: Install Geckodriver
