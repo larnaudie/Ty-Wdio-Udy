@@ -1,12 +1,13 @@
 import { Given } from "@wdio/cucumber-framework";
 import { expect } from 'chai';
 import logger from "../../helper/logger.ts";
+import { url } from "inspector";
 
 Given ("As a standar user I login to inventory web app", async function (dataTable) {
 
-    logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: Started to login sause demo app`);
+    // logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: Started to login sause demo app`);
 
-    console.log(`>>>>> MIII TESTID: ${this.testId}`);
+    console.log(`>>>>> MIII TESTID: ${this.testId} >>>>>>>>>>>}`);
 
     let arrObjetosDT = dataTable.hashes();
     // console.log(`Types of dt: ${typeof arrObjetosDT}`)
@@ -18,7 +19,8 @@ Given ("As a standar user I login to inventory web app", async function (dataTab
     // console.log(`>>>>>>>>>>>>> Test config values: ${JSON.stringify(browser.options)}`)
 
     try {
-        await $(`input[placeholder="Username"]`).setValue(arrObjetosDT[0]);
+        // await $(`input[placeholder="Username"]`).setValue(arrObjetosDT[0]);
+        await $(`input[placeholder="Username"]`).setValue("standard_user");
         await $(`input[placeholder="Password"]`).setValue("secret_sauce");
         await $("#login-button").click();
     } catch (err) {
