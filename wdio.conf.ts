@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import allure from "@wdio/allure-reporter";
 import fs from "fs";
-let headless = process.env.HEADLESS;
+const isHeadless = process.env.HEADLESS === 'Y';
 let debug = process.env.DEBUG;
 import type { Options } from "@wdio/types";
 import * as glob from "glob";
@@ -65,7 +65,7 @@ export const config: WebdriverIO.Config = {
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
         args:
-          headless === "Y" || headless === "y"
+        isHeadless === "Y"
             ? [
                 "--disable-web-security",
                 "--headless",
