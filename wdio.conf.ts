@@ -285,7 +285,7 @@ export const config: WebdriverIO.Config = {
    * @param {object}                 context  Cucumber World object
    */
   beforeScenario: function (world, context) {
-    console.log(`>>>>>>>>> SOOOY WOOORLD: ${JSON.stringify(world)}`);
+    // console.log(`>>>>>>>>> SOOOY WOOORLD: ${JSON.stringify(world)}`);
     let arrNombresScenarios = world.pickle.name.split(/:/);
     if (arrNombresScenarios.length > 0)
       browser.options.testId = arrNombresScenarios[0];
@@ -315,12 +315,12 @@ export const config: WebdriverIO.Config = {
    * @param {object}             context          Cucumber World object
    */
   afterStep: async function (step, scenario, result, context) {
-    console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
-    console.log(
-      `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
+    // console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
+    // console.log(
+      // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
     );
-    console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
-    console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
+    // console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
+    // console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
     if (!result.passed) {
       await browser.takeScreenshot();
     }
