@@ -75,8 +75,8 @@ export const config: WebdriverIO.Config = {
                 "--window-size=1920,1080",
               ]
             : [],
-        timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
       },
+      timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
     {
       maxInstances: 3,
