@@ -35,10 +35,6 @@ Given ("As a standar user I login to inventory web app", async function (dataTab
     this.appID = "ASDBD";
 })
 
-
-
-
-
 Given("Login to inventory web app", async function () {
     // console.log(`Test usuario: ${process.env.TEST_STD_USERNAME}`)
 
