@@ -314,12 +314,12 @@ export const config: WebdriverIO.Config = {
    * @param {object}             context          Cucumber World object
    */
   afterStep: async function (step, scenario, result, context) {
-    console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
-    console.log(
-      `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
-    );
-    console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
-    console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
+    // console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
+    // console.log(
+      // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
+    // );
+    // console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
+    // console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
     if (!result.passed) {
       await browser.takeScreenshot();
     }
