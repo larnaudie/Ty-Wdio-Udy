@@ -63,9 +63,7 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
-        args:
-        isHeadless === "Y"
-            ? [
+        args: [
                 "--disable-web-security",
                 "--headless",
                 "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
@@ -76,7 +74,6 @@ export const config: WebdriverIO.Config = {
                 "--disable-setuid-sandbox",      // Esto ayuda a evitar errores de sandboxing
                 "--disable-software-rasterizer"  // Evita problemas gráficos en CI
               ]
-            : [],
       },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
