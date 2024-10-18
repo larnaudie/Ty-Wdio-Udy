@@ -1,4 +1,4 @@
- name: WDIO-CI
+name: WDIO-CI
 # Controla donde va a trabajar el workflow
 on:
   # lanza el workflow cuando hay un push o pull pero en las branches que estan aca
