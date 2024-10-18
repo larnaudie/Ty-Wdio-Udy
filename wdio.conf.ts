@@ -64,7 +64,7 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       "goog:chromeOptions": {
         args:
-          headless.toUpperCase() === "Y"
+          headless === "Y"
             ? [
                 " --disable-web-security",
                 "--headless",
@@ -92,7 +92,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: debug.toUpperCase() === "Y" ? "info" : "error",
+  logLevel: debug === "Y" ? "info" : "error",
   //
   // Set specific log levels per logger
   // loggers:
