@@ -62,6 +62,7 @@ export const config: WebdriverIO.Config = {
     {
       maxInstances: 3,
       browserName: "chrome",
+      acceptInsecureCerts: true,
       "goog:chromeOptions": {
         args:
           headless === "Y"
@@ -73,14 +74,16 @@ export const config: WebdriverIO.Config = {
                 "--window-size=1920,1080",
               ]
             : [],
-        acceptInsecureCerts: true,
         timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
       },
     },
     {
       maxInstances: 3,
-      browserName: "firefox",
+      browserName: 'firefox',
       acceptInsecureCerts: true,
+      'moz:firefoxOptions': {
+        binary: '/usr/bin/firefox', // Ensure this path is correct
+      },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
   ],
