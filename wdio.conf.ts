@@ -64,11 +64,14 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
-        args: (headless === "Y" || headless === "y") ? [
+        args:
+          headless === "Y" || headless === "y"
+            ? [
                 "--disable-web-security",
                 "--headless",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
+                "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
+                "--no-sandbox", // Esto es necesario en algunos entornos CI
+                "--disable-gpu", // Deshabilitar la aceleración de GPU (aunque es menos crítico en entornos sin cabeza)
                 "--window-size=1920,1080",
               ]
             : [],
@@ -93,7 +96,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: (debug === "Y" || debug === "y") ? "info" : "error",
+  logLevel: debug === "Y" || debug === "y" ? "info" : "error",
   //
   // Set specific log levels per logger
   // loggers:
@@ -219,7 +222,10 @@ export const config: WebdriverIO.Config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
-    if ((process.env.RUNNER === "LOCAL" || process.env.RUNNER === "local") && fs.existsSync("./allure-results")) {
+    if (
+      (process.env.RUNNER === "LOCAL" || process.env.RUNNER === "local") &&
+      fs.existsSync("./allure-results")
+    ) {
       fs.rmdirSync("./allure-results", { recursive: true });
     }
   },
@@ -317,7 +323,7 @@ export const config: WebdriverIO.Config = {
   afterStep: async function (step, scenario, result, context) {
     // console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
     // console.log(
-      // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
+    // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
     // );
     // console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
     // console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
