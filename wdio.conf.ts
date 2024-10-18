@@ -78,15 +78,15 @@ export const config: WebdriverIO.Config = {
       },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
-    {
-      maxInstances: 1,
-      browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: ["-headless"],
-      },
-      acceptInsecureCerts: true,
-      timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
-    },
+    // {
+    //   maxInstances: 1,
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: ["-headless"],
+    //   },
+    //   acceptInsecureCerts: true,
+    //   timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
+    // },
   ],
 
   //

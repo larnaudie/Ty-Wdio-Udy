@@ -41,7 +41,10 @@ jobs:
       #     chromedriver --version
     # Install chromium
       - name: Install Chromium
-        run: sudo apt-get install chromium-browser
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 120
+          install-chromedriver: true
 
       # Nombramos otro step instalando node
       - name: Use Node.js
