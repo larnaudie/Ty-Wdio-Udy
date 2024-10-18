@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import allure from "@wdio/allure-reporter";
 import fs from "fs";
-const isHeadless = process.env.HEADLESS === 'Y';
+const isHeadless = process.env.HEADLESS === "Y";
 let debug = process.env.DEBUG;
 import type { Options } from "@wdio/types";
 import * as glob from "glob";
@@ -63,17 +63,17 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
-        args: isHeadless? [
-                "--disable-web-security",
-                "--headless",
-                "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
-                "--no-sandbox", // Esto es necesario en algunos entornos CI
-                "--disable-gpu", // Deshabilitar la aceleración de GPU (aunque es menos crítico en entornos sin cabeza)
-                "--window-size=1920,1080",
-                "--remote-debugging-port=9222",  // Añade este puerto para evitar problemas con DevToolsActivePort
-                "--disable-setuid-sandbox",      // Esto ayuda a evitar errores de sandboxing
-                "--disable-software-rasterizer"  // Evita problemas gráficos en CI
-              ] : {}
+        args: [
+          "--disable-web-security",
+          "--headless",
+          "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
+          "--no-sandbox", // Esto es necesario en algunos entornos CI
+          "--disable-gpu", // Deshabilitar la aceleración de GPU (aunque es menos crítico en entornos sin cabeza)
+          "--window-size=1920,1080",
+          "--remote-debugging-port=9222", // Añade este puerto para evitar problemas con DevToolsActivePort
+          "--disable-setuid-sandbox", // Esto ayuda a evitar errores de sandboxing
+          "--disable-software-rasterizer", // Evita problemas gráficos en CI
+        ],
       },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
