@@ -3,8 +3,9 @@ import dotenv from "dotenv";
 dotenv.config();
 import allure from "@wdio/allure-reporter";
 import fs from "fs";
-let headless = process.env.HEADLESS;
-let debug = process.env.DEBUG;
+let headless = (process.env.HEADLESS|| "N").toUpperCase() ;
+let debug = (process.env.DEBUG|| "N").toUpperCase() ;
+let myRunner = (process.env.RUNNER|| "N").toUpperCase() ;
 import type { Options } from "@wdio/types";
 import * as glob from "glob";
 export const config: WebdriverIO.Config = {
@@ -64,7 +65,7 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       "goog:chromeOptions": {
         args:
-          headless.toUpperCase() === "Y"
+          headless === "Y"
             ? [
                 " --disable-web-security",
                 "--headless",
@@ -92,7 +93,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: debug.toUpperCase() === "Y" ? "info" : "error",
+  logLevel: debug === "Y" ? "info" : "error",
   //
   // Set specific log levels per logger
   // loggers:
@@ -137,7 +138,7 @@ export const config: WebdriverIO.Config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-    // services: [`chromedriver`, `geckodriver`],
+  // services: [`chromedriver`, `geckodriver`],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -218,7 +219,7 @@ export const config: WebdriverIO.Config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
-    if (process.env.RUNNER === "LOCAL" && fs.existsSync("./allure-results")) {
+    if (myRunner === "LOCAL" && fs.existsSync("./allure-results")) {
       fs.rmdirSync("./allure-results", { recursive: true });
     }
   },
