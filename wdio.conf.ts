@@ -63,7 +63,7 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
-        args: [
+        args: isHeadless? [
                 "--disable-web-security",
                 "--headless",
                 "--disable-dev-shm-usage", // Esto ayuda a evitar problemas con la memoria compartida
@@ -73,7 +73,7 @@ export const config: WebdriverIO.Config = {
                 "--remote-debugging-port=9222",  // Añade este puerto para evitar problemas con DevToolsActivePort
                 "--disable-setuid-sandbox",      // Esto ayuda a evitar errores de sandboxing
                 "--disable-software-rasterizer"  // Evita problemas gráficos en CI
-              ]
+              ] : {}
       },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
