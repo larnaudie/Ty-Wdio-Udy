@@ -30,11 +30,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-    # Install chromium
+      # Install chromium
       - name: Install Chromium
         uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: 120
+          chrome-version: stable   # Cambia a la versión estable
           install-chromedriver: true
 
       # Nombramos otro step instalando node
@@ -45,8 +45,13 @@ jobs:
 
       # Nombramos otro step para instalar dependencias
       - name: Install dependencies
-        run:
-          npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps
+
+      # Configurar memoria compartida (shm) para evitar problemas de memoria
+      - name: Set up shared memory
+        run: |
+          sudo mkdir /dev/shm || true
+          sudo mount -t tmpfs -o size=512M tmpfs /dev/shm
 
       # Asegurarse de que WDIO tiene permisos de ejecución
       - name: Set executable permissions for wdio
