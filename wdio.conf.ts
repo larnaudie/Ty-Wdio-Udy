@@ -79,7 +79,7 @@ export const config: WebdriverIO.Config = {
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
     {
-      maxInstances: 3,
+      maxInstances: 1,
       browserName: "firefox",
       "moz:firefoxOptions": {
         args: ["-headless"],
@@ -173,7 +173,7 @@ export const config: WebdriverIO.Config = {
         disableWebdriverStepsReporting: true,
         useCucumberStepReporter: true,
         reportedEnvironmentVars: {
-          Environment: "Test",
+          Environment: "TEST",
           Middleware: "SIT-EAI",
         },
       },
@@ -350,7 +350,8 @@ export const config: WebdriverIO.Config = {
    * @param {GherkinDocument.IFeature} feature  Cucumber feature object
    */
   // afterFeature: function (uri, feature) {
-  //   allure.addEnvironment("Environment", browser.options.environment);
+  //Quedo deprecado el addEnvironment, ahora se hace desde el reporters de wdio.conf.ts
+  // allure.addEnvironment("Environment", browser.options.environment);
   //   allure.addEnvironment("Middleware", "soy middlewaree");
   // },
 
