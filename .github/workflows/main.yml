@@ -57,7 +57,7 @@ jobs:
       # Nombramos otro step para instalar dependencias
       - name: Install dependencies
         run:
-          npm install --legacy-peer-deps
+          npm install
 
       # Asegurarse de que WDIO tiene permisos de ejecución
       - name: Set executable permissions for wdio
