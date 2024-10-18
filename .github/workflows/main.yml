@@ -30,7 +30,7 @@ jobs:
         # le instalamos en terminal el chromium para chrome
         run: npm install chromedriver --save-dev
       # Vamos a hacer un checkout del repositorio bajo GITHUB_WORKSPACE
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       # Instalar Geckodriver - especificamos una versión fija
       - name: Install Geckodriver
