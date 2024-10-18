@@ -29,8 +29,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-        
 
+      # Correra las features con @smoke respetando los scripts del package.json
+      - name: Corriendo test smoke
+        run: npm run test:smoke
 
 #  name: WDIO-CI
 # # Controla donde va a trabajar el workflow
