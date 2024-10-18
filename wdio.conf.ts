@@ -318,7 +318,7 @@ export const config: WebdriverIO.Config = {
     // console.log(`>>>>>>>>>>>>>> STEPS AFTERSTEP ${JSON.stringify(step)}`);
     // console.log(
       // `>>>>>>>>>>>>>> scenario AFTERSTEP ${JSON.stringify(scenario)}`
-    );
+    // );
     // console.log(`>>>>>>>>>>>>>> result AFTERSTEP ${JSON.stringify(result)}`);
     // console.log(`>>>>>>>>>>>>>> context AFTERSTEP ${JSON.stringify(context)}`);
     if (!result.passed) {
