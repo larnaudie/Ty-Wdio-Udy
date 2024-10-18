@@ -26,7 +26,6 @@ jobs:
 
       # le indicamos los pasos
     steps:
-      # Nombramos el paso que va a hacer
       - name: Install Chromium
         # le instalamos en terminal el chromium para chrome
         run: sudo apt-get install chromium-browser
