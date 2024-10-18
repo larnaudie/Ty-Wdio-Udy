@@ -58,4 +58,4 @@ jobs:
 
       # Correra las features con @smoke respetando los scripts del package.json
       - name: Corriendo test smoke
-        run: npm run test:demo
+        run: npm run test:smoke

@@ -64,17 +64,13 @@ export const config: WebdriverIO.Config = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "goog:chromeOptions": {
-        binary: '/usr/bin/google-chrome',
-        args:
-          headless === "Y"
-            ? [
-                " --disable-web-security",
-                "--headless",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                "--window-size=1920,1080",
-              ]
-            : [],
+        args: headless === "Y" ? [
+            "--disable-web-security",
+            "--headless",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--window-size=1920,1080"
+          ] : [],
       },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
@@ -82,12 +78,9 @@ export const config: WebdriverIO.Config = {
       maxInstances: 3,
       browserName: 'firefox',
       acceptInsecureCerts: true,
-      'moz:firefoxOptions': {
-        binary: '/usr/bin/firefox', // Ensure this path is correct
-      },
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
     },
-  ],
+],
 
   //
   // ===================
@@ -346,10 +339,10 @@ export const config: WebdriverIO.Config = {
    * @param {string}                   uri      path to feature file
    * @param {GherkinDocument.IFeature} feature  Cucumber feature object
    */
-  afterFeature: function (uri, feature) {
-    allure.addEnvironment("Environment", browser.options.environment);
-    allure.addEnvironment("Middleware", "soy middlewaree");
-  },
+  // afterFeature: function (uri, feature) {
+  //   allure.addEnvironment("Environment", browser.options.environment);
+  //   allure.addEnvironment("Middleware", "soy middlewaree");
+  // },
 
   /**
    * Runs after a WebdriverIO command gets executed

@@ -27,7 +27,7 @@ When(/^Search with (.*)$/, async function (searchItem) {
 })
 
 Then(/^Click on the first search result$/, async function () {
-    let ele = await $(`#rso > div:nth-child(1) > div > div > div > div > div > div > div > div.yuRUbf > div > span > a > h3`);
+    let ele = await $(`.dURPMd .hlcw0c:nth-child(1) .eKjLze`);
     await ele.click();
 })
 
