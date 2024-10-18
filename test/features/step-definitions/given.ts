@@ -85,5 +85,5 @@ Given("Login to inventory web app", async function () {
     await browser.pause(5999);
     await browser.forward()
     */
-   await browser.debug()
+//    await browser.debug()
 })

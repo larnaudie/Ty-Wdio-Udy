@@ -72,7 +72,7 @@ export const config: WebdriverIO.Config = {
           "--no-sandbox", // Esto es necesario en algunos entornos CI
           "--disable-gpu", // Deshabilitar la aceleración de GPU (aunque es menos crítico en entornos sin cabeza)
           "--window-size=1920,1080",
-          "--remote-debugging-port=9222", // Añade este puerto para evitar problemas con DevToolsActivePort
+          "--remote-debugging-port=9223", // Añade este puerto para evitar problemas con DevToolsActivePort
           "--disable-setuid-sandbox", // Esto ayuda a evitar errores de sandboxing
           "--disable-software-rasterizer", // Evita problemas gráficos en CI
         ] 
@@ -228,7 +228,7 @@ export const config: WebdriverIO.Config = {
       (process.env.RUNNER === "LOCAL" || process.env.RUNNER === "local") &&
       fs.existsSync("./allure-results")
     ) {
-      fs.rmdirSync("./allure-results", { recursive: true });
+      fs.rmSync("./allure-results", { recursive: true });
     }
   },
   /**
