@@ -38,7 +38,7 @@ Then(/^URL should match (.*)$/, async function (expectedUrl) {
     //probando con un objeto browser, peude ser con un elemento en vez de browser.
     await browser.waitUntil(async function(){
         return await browser.getTitle() === `WebdriverIO · Marco de prueba de automatización móvil y navegador de próxima generación para Node.js | WebdriverIO`
-    }, {timeout: 20000, interval: 500, timeoutMsg:`Pah, mostro, no pude hacerlo funcionarl; ${browser.getTitle()}`} )
+    }, {timeout: 20000, interval: 500, timeoutMsg:`Pah, mostro, no pude hacerlo funcionarl; ${JSON.stringify(browser.getTitle())}`} )
 
     let url = await browser.getUrl();
     expect(url).to.equal(expectedUrl);
