@@ -14,4 +14,4 @@ Feature: Inventory
 
         Examples:
             | TestID    |NumberOfProducts| 
-            | WEB_TC003 |6               |
+            | WEB_TC003 |    9           |
