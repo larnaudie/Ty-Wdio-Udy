@@ -25,9 +25,9 @@ When(/^Search with (.*)$/, async function (searchItem) {
     // //agregado en el capitulo 39
     // console.log(`>>>>>>>> element obj: ${JSON.stringify(ele)}`)
 })
-
+// nOMBRE DE LA CLASE CAMBIA
 Then(/^Click on the first search result$/, async function () {
-    let ele = await $(`.dURPMd .hlcw0c:nth-child(1) .eKjLze`);
+    let ele = await $(`div[data-async-context="query:WDIO"] div div div div div div div div div div span a`);
     await ele.click();
 })
 
@@ -37,8 +37,8 @@ Then(/^URL should match (.*)$/, async function (expectedUrl) {
     //capitulo 40 waitUntil
     //probando con un objeto browser, peude ser con un elemento en vez de browser.
     await browser.waitUntil(async function(){
-        return await browser.getTitle() === `WebdriverIO · Marco de prueba de automatización móvil y navegador de próxima generación para Node.js | WebdriverIO`
-    }, {timeout: 20000, interval: 500, timeoutMsg:`Pah, mostro, no pude hacerlo funcionarl; ${JSON.stringify(browser.getTitle())}`} )
+        return await browser.getTitle() === `WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO`
+    }, {timeout: 20000, interval: 500, timeoutMsg:`Pah, mostro, no pude hacerlo funcionarl;`} )
 
     let url = await browser.getUrl();
     expect(url).to.equal(expectedUrl);

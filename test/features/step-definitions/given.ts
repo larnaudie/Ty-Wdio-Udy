@@ -2,14 +2,22 @@ import { Given } from "@wdio/cucumber-framework";
 import { expect } from 'chai';
 import logger from "../../helper/logger.ts";
 import { url } from "inspector";
+import allure from "@wdio/allure-reporter"
+import reporter from "../../helper/reporter.ts";
 
-Given ("As a standar user I login to inventory web app", async function (dataTable) {
+// Given ("As a standar user I login to inventory web app", async function (dataTable) {
+Given (/^As (a|an) (.*) user I login to inventory web app$/, async function (prefixTxt, userType, dataTable) {
 
+    reporter.addStep(this.testId, "info", "Login to sause demo")
+
+    // //Esto refiere al reporter.addStep, pero si esta el reporter.addStep esto lo comentamos.
     // logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: Started to login sause demo app`);
+    // allure.addStep(`>>>>>>> ${this.testId}: Started to login sause demo app...`)
 
     console.log(`>>>>> MIII TESTID: ${this.testId} >>>>>>>>>>>}`);
 
-    let arrObjetosDT = dataTable.hashes();
+    // let arrObjetosDT = dataTable.hashes();
+
     // console.log(`Types of dt: ${typeof arrObjetosDT}`)
     // console.log(`Types of dt: ${typeof arrObjetosDT.constructor}`)
     // console.log(`values of DT:: ${JSON.stringify(arrObjetosDT)}`)
@@ -20,7 +28,8 @@ Given ("As a standar user I login to inventory web app", async function (dataTab
 
     try {
         // await $(`input[placeholder="Username"]`).setValue(arrObjetosDT[0]);
-        await $(`input[placeholder="Username"]`).setValue("standard_user");
+        await $(`input[placeholder="Username"]`).setValue(process.env.TEST_STD_USERNAME);
+        // await $(`input[placeholder="Username"]`).setValue("standard_user");
         await $(`input[placeholder="Password"]`).setValue("secret_sauce");
         await $("#login-button").click();
     } catch (err) {
@@ -33,6 +42,11 @@ Given ("As a standar user I login to inventory web app", async function (dataTab
         await $("#login-button").click();
     }
     this.appID = "ASDBD";
+    // //Esto refiere al reporter.addStep, pero si esta el reporter.addStep esto lo comentamos.
+    // logger.info(`ZZZZZZZZZZZZZZZZZZZZZZZZ ${this.testId}: Login successful`);
+    // allure.addStep(`>>>>>>> ${this.testId}:  Login successful`)
+
+    reporter.addStep(this.testId, "debug", "Successful")
 })
 
 Given("Login to inventory web app", async function () {
@@ -85,5 +99,5 @@ Given("Login to inventory web app", async function () {
     await browser.pause(5999);
     await browser.forward()
     */
-   await browser.debug()
+//    await browser.debug()
 })
