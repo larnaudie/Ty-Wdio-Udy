@@ -2,7 +2,7 @@ Feature: Inventory
 
     @demo @debug @smoke
     Scenario Outline: WEB_TC003: Demo Inventory
-    Given As a standar user I login to inventory web app
+    Given As a standard_user user I login to inventory web app
     |userType |UserName                 |
     |stdUser  | standard_user           |
     |ProbUser | problem_user            |
