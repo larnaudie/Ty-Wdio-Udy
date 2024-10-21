@@ -10,6 +10,8 @@ export const config = Object.assign(baseConfig, {
     ],
   },
   sauceDemoURL: "https://saucedemo.com",
+  reqresBaseURL: "https://reqres.in",
+  nopeCommerceBaseURL: "https://admin-demo.nopcommerce.com",
   reporters: [
     "spec",
     [
@@ -25,4 +27,15 @@ export const config = Object.assign(baseConfig, {
       },
     ],
   ],
+  sqlConfig: {
+    user: "copeautomation",
+    password: "demo",
+    database: "AdventureWorksDW2019",
+    server: "DESKTOP-PSLNVC8",
+    options: {
+      encrypt: false, // for azure
+      trustServerCertificate: false, // change to true for local dev / self-signed certs
+      trustedConnection: true
+    },
+  },
 });

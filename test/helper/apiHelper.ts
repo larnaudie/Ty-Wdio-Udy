@@ -1,5 +1,5 @@
 import request from "supertest";
-// import reporter from "../helper/reporter";
+import reporter from "../helper/reporter";
 // console.log(`>>>>>>>>>>> TYPE OF REQUEEEEST: ${typeof request}`)
 // console.log(`>>>>>>>>>> NUMERO DE ARGUMENTOS: ${request.length}`)
 
